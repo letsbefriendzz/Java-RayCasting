@@ -74,4 +74,11 @@ public class Ray
     {
         return new Vector3D( this.origin.add( this.direction.multiplyScalar( t ) ) );
     }
+
+    public void consoleDisplay()
+    {
+        origin.consoleDisplay();
+        direction.consoleDisplay();
+        System.out.print("--");
+    }
 }

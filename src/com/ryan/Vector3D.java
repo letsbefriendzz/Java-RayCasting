@@ -91,12 +91,12 @@ public class Vector3D
         return new Vector3D( (this.y*cross.getZ()) - (this.z*cross.getY()), (this.x*cross.getZ()) - (this.z*cross.getX()), (this.x*cross.getY()) - (this.y*cross.getX()) );
     }
 
-    public void consoleDisplay()
+    public Vector3D avg(Vector3D avg)
     {
-        System.out.println("(" + this.getX() + ", " + this.getY() + ", " + this.getZ() + ")");
+        return  new Vector3D( ( this.getX() + avg.getX() ) / 2, ( this.getY() + avg.getY() ) / 2, ( this.getZ() + avg.getZ() ) / 2 );
     }
 
-    public void consoleDisplay2()
+    public void consoleDisplay()
     {
         System.out.print("(" + this.getX() + ", " + this.getY() + ", " + this.getZ() + ")");
     }
@@ -138,6 +138,8 @@ public class Vector3D
         v1.consoleDisplay();
         v2.consoleDisplay();
 
+        System.out.println();
+
         System.out.println("Magnitude:");
         System.out.println("V1:\t" + v1.getMagnitude());
         System.out.println("V2:\t" + v2.getMagnitude());
@@ -155,5 +157,6 @@ public class Vector3D
         System.out.println("Cross Product:");
         Vector3D cross = v1.cross(v2);
         cross.consoleDisplay();
+        System.out.println();
     }
 }
