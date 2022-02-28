@@ -2,19 +2,27 @@ package com.ryan;
 
 import java.util.ArrayList;
 
-public class ViewPort
+public class PerspectiveViewPort
 {
+    // width and height of the pixel array
     private int width;
     private int height;
+
+    // the vector that represents the origin point, or eye for all rays
+    private Vector3D e = null;
+
+    // the floating point number d represents the distances from the eye
+    // to all of the pixel vectors on a given axis
+    private float d;
     private ArrayList<ArrayList<Vector3D>> pixels;
 
-    public ViewPort()
+    public PerspectiveViewPort()
     {
         this.pixels = null;
     }
 
     // Construct a new screen with a vector to assign as the centre point of the screen.
-    public ViewPort(int width, int height, Vector3D startCoordinate)
+    public PerspectiveViewPort(int width, int height, Vector3D startCoordinate)
     {
         this.pixels = new ArrayList<>();
         this.width = width;
@@ -28,6 +36,37 @@ public class ViewPort
                 pixels.get(x).add(new Vector3D(startCoordinate.getX() + x, startCoordinate.getY() + y, startCoordinate.getZ()));
             }
         }
+
+        // we can safely assume that the eye will be situated at the same relative position as the centre of the ViewPort, with an
+        // offset on the third axis. Set the eye to the centre point for now.
+        this.e = this.getCentrePoint();
+    }
+
+    public boolean xOffsetEye(double offset)
+    {
+        if(this.e == null)
+            return false;
+
+        this.e = this.e.add(new Vector3D(offset,0,0));
+        return true;
+    }
+
+    public boolean yOffsetEye(double offset)
+    {
+        if(this.e == null)
+            return false;
+
+        this.e = this.e.add(new Vector3D(0,offset,0));
+        return true;
+    }
+
+    public boolean zOffsetEye(double offset)
+    {
+        if(this.e == null)
+            return false;
+
+        this.e = this.e.add(new Vector3D(0,0,offset));
+        return true;
     }
 
     // kind of a muddy method of getting a centre point but it works
@@ -84,6 +123,12 @@ public class ViewPort
 
     public void consoleDisplay()
     {
+        System.out.println("Eye:");
+        this.e.consoleDisplay();
+        System.out.println();
+        System.out.println("Distance (d):");
+        System.out.println(this.d);
+
         for(int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -92,6 +137,10 @@ public class ViewPort
             }
             System.out.println();
         }
+
+        System.out.println("Centre Point:");
+        this.getCentrePoint().consoleDisplay();
+        System.out.println();
     }
 
     public int getWidth()
