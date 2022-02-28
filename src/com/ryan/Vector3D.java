@@ -27,6 +27,15 @@ public class Vector3D
     // constructor that takes an x, y, z value
     public Vector3D(double x, double y, double z)
     {
+        // if gnarly values are passed, reset to 0.0
+        // don't think it makes a diff
+        if(x == -0.0)
+            x = 0.0;
+        if (y == -0.0)
+            y = 0.0;
+        if (z == -0.0)
+            z = 0.0;
+
         this.x = x;
         this.y = y;
         this.z = z;
@@ -83,6 +92,11 @@ public class Vector3D
     public double dot(Vector3D dot)
     {
         return ( ( this.x * dot.getX() ) + (this.y * dot.getY() ) + (this.z * dot.getZ() ) );
+    }
+
+    public Vector3D getDifference(Vector3D diff)
+    {
+        return new Vector3D( -(this.getX() - diff.getX()), -(this.getY() - diff.getY()), -(this.getZ() - diff.getZ()) );
     }
 
     // Calculates the cross product of two vectors, returns a new vector.

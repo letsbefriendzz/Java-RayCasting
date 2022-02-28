@@ -1,0 +1,71 @@
+package com.ryan;
+
+import java.util.ArrayList;
+import java.util.spi.AbstractResourceBundleProvider;
+
+public class ViewPort
+{
+    static int zOffset = 1;
+    private Vector3D eye;
+    private Vector3D[] vertices = new Vector3D[4];
+
+    /*
+    yuhhhh it's rewind time!
+
+    so, we want a new ViewPort. convention is that we have the camera origin at (0,0,0), and that we have the
+    viewport offset from the camera by one z unit. The viewport is a constant size square that is 2x2. We take
+    our raster coordinates and cast them onto this 2x2 square, rather than constructing a large array of coordinates
+    directly from raster space.
+
+    first, we remap our raster coordinates to ndc (normalized device coordinate) space, which is just a fancy way
+    of saying we normalize the coordinates between 0 and 1. this can be achieved by dividing our respective x and y
+    coordinate by the width and height.
+
+    if our aspect ratio isn't 1:1, we have to accommodate my multiplying the pixel x coordinates by the aspect ratio.
+     */
+    public ViewPort()
+    {
+        // eye is default (0,0,0)
+        this.eye = new Vector3D();
+        for(int i = 0; i < this.vertices.length; i++)
+        {
+            // absolutely fucking disgusting implementation but I'm too tired to come up with a better way
+            if (i==0)
+                vertices[i] = new Vector3D(-1,1,zOffset);
+            else if (i==1)
+                vertices[1] = new Vector3D(-1,-1,zOffset);
+            else if (i==2)
+                vertices[i] = new Vector3D(1,-1,zOffset);
+            else if (i==3)
+                vertices[i] = new Vector3D(1,1,zOffset);
+        }
+    }
+
+    /*
+    Generates rays and normalizes the direction, assuming our camera is at (0,0,0) and we
+    generate the ViewPort frame at z + zOffset = 1
+     */
+    public ArrayList<ArrayList<Ray>> generateRays(RasterOptions r)
+    {
+        ArrayList<ArrayList<Ray>> rays = new ArrayList<>();
+
+        for (int y = 0; y < r.height; y++)
+        {
+            double asp = r.width / r.height;
+            rays.add(new ArrayList<>());
+            for(int x = 0; x < r.width; x++)
+            {
+                double Px = (x + 0.5) / r.width;
+                double Py = (y + 0.5) / r.height;
+                Px = (2*Px)-1;
+                Py = (2*Py)-1;
+
+                Px = Px * asp; // accommodate for aspect ratio
+
+                rays.get(y).add(new Ray(eye, new Vector3D(Px, Py, zOffset)));
+            }
+        }
+
+        return rays;
+    }
+}

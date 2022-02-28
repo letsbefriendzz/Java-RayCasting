@@ -31,13 +31,13 @@ public class Ray
     public Ray(Vector3D origin, Vector3D direction)
     {
         this.origin = new Vector3D(origin);
-        this.direction = new Vector3D(direction);
+        this.direction = new Vector3D(direction).getNormalized();
     }
 
     public Ray(double ox, double oy, double oz, double dx, double dy, double dz)
     {
         this.origin = new Vector3D(ox, oy, oz);
-        this.direction = new Vector3D(dx, dy, dz);
+        this.direction = new Vector3D(dx, dy, dz).getNormalized();
     }
 
     public void setOrigin(Vector3D origin)
@@ -79,6 +79,6 @@ public class Ray
     {
         origin.consoleDisplay();
         direction.consoleDisplay();
-        System.out.print("--");
+        System.out.print("  ");
     }
 }
