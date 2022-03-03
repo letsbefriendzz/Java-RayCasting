@@ -28,7 +28,7 @@ public class ViewPort
         this.eye = new Vector3D();
         for(int i = 0; i < this.vertices.length; i++)
         {
-            // absolutely fucking disgusting implementation but I'm too tired to come up with a better way
+            // absolutely fucking disgusting implementation, but I'm too tired to come up with a better way
             if (i==0)
                 vertices[i] = new Vector3D(-1,1,zOffset);
             else if (i==1)
@@ -54,11 +54,17 @@ public class ViewPort
             rays.add(new ArrayList<>());
             for(int x = 0; x < r.width; x++)
             {
+                // puts the coordinates into 0 -> 1 space
                 double Px = (x + 0.5) / r.width;
                 double Py = (y + 0.5) / r.height;
+
+                // converts 0-1 space to -1 -> 1 space
                 Px = (2*Px)-1;
                 Py = (2*Py)-1;
 
+                // stretches the x coordinates to the appropriate aspect ratio;
+                // assumes a horizontal image, not a vertical image
+                // vertical images are for losers
                 Px = Px * asp; // accommodate for aspect ratio
 
                 rays.get(y).add(new Ray(eye, new Vector3D(Px, Py, zOffset)));
