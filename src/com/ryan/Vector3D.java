@@ -115,6 +115,12 @@ public class Vector3D
         System.out.print("(" + this.getX() + ", " + this.getY() + ", " + this.getZ() + ")");
     }
 
+    public String textOut()
+    {
+        return "(" + this.getX() + ", " + this.getY() + ", " + this.getZ() + ")";
+    }
+
+
     // generic getters
     public double getX()
     {

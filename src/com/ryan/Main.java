@@ -1,5 +1,5 @@
 package com.ryan;
-
+import java.io.*;
 /*
 NOTES
 
@@ -11,21 +11,18 @@ import java.util.ArrayList;
 
 public class Main
 {
-
+    private static String filePath = "C:\\Users\\ryane\\Desktop\\3dvectors";
     public static void main(String[] args)
     {
-        RasterOptions rp = new RasterOptions(7,5);
+        int width = 800;
+        int height = 400;
+
+        Scene s = new Scene();
+        RasterOptions rp = new RasterOptions(width,height);
         ViewPort vp = new ViewPort();
 
         ArrayList<ArrayList<Ray>> rays = vp.generateRays(rp);
 
-        for(int y = 0; y < 5; y++)
-        {
-            for(int x = 0; x < 7; x++)
-            {
-                rays.get(y).get(x).consoleDisplay();
-            }
-            System.out.println();
-        }
+        s.evaluateRays(rays, rp);
     }
 }
