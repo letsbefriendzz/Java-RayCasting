@@ -167,6 +167,12 @@ public class Vector3D
         System.out.println("Adding V1 + V2");
         System.out.println("(" + v1.add(v2).getX() + ", " + v1.add(v2).getY() + ", " + v1.add(v2).getZ() + ")");
 
+        System.out.println("Multiplying V1 * 5");
+        v1.consoleDisplay();
+        System.out.println();
+        v1.multiplyScalar(5).consoleDisplay();
+        System.out.println();
+
         System.out.println("Normalized Magnitude (Expects 1.0):");
         System.out.println("V1:\t" + v1.getNormalized().getMagnitude());
         System.out.println("V2:\t" + v1.getNormalized().getMagnitude());

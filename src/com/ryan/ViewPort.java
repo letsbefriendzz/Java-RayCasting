@@ -50,7 +50,9 @@ public class ViewPort
 
         for (int y = 0; y < r.height; y++)
         {
-            double asp = r.width / r.height;
+            double w = r.width;
+            double h = r.height;
+            double asp = w/h;
             rays.add(new ArrayList<>());
             for(int x = 0; x < r.width; x++)
             {
@@ -72,5 +74,10 @@ public class ViewPort
         }
 
         return rays;
+    }
+
+    public Vector3D getEye()
+    {
+        return eye;
     }
 }

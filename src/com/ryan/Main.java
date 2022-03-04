@@ -1,5 +1,4 @@
 package com.ryan;
-import java.io.*;
 /*
 NOTES
 
@@ -7,22 +6,34 @@ Camera class is probably redundant, it's literally just an origin point for all 
 rays in a perspective view
  */
 
-import java.util.ArrayList;
+import com.ryan.shapes.Sphere;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Main
 {
-    private static String filePath = "C:\\Users\\ryane\\Desktop\\3dvectors";
     public static void main(String[] args)
     {
-        int width = 800;
-        int height = 400;
+        int width = 1920;
+        int height = 1080;
 
-        Scene s = new Scene();
-        RasterOptions rp = new RasterOptions(width,height);
-        ViewPort vp = new ViewPort();
+        Scene s             = new Scene();
+        RasterOptions rp    = new RasterOptions(width,height,10);
+        ViewPort vp         = new ViewPort();
 
-        ArrayList<ArrayList<Ray>> rays = vp.generateRays(rp);
+        s.addShape(new Sphere(new Vector3D(4,9,8), 4.5));
 
-        s.evaluateRays(rays, rp);
+        System.out.println("Eye:");
+        vp.getEye().consoleDisplay();
+
+        File out = new File("C:\\_retemp\\test.bmp");
+        BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp) , rp);
+        try
+        {
+            ImageIO.write(img, "BMP", out);
+        } catch (IOException ioe) {}
     }
 }

@@ -31,7 +31,7 @@ public class Ray
     public Ray(Vector3D origin, Vector3D direction)
     {
         this.origin = new Vector3D(origin);
-        this.direction = new Vector3D(direction).getNormalized();
+        this.direction = new Vector3D(direction).getNormalized(); // might be bad !
     }
 
     public Ray(double ox, double oy, double oz, double dx, double dy, double dz)
@@ -72,7 +72,7 @@ public class Ray
 
     public Vector3D eval(double t)
     {
-        return new Vector3D( this.origin.add( this.direction.multiplyScalar( t ) ) );
+        return this.origin.add(this.direction.multiplyScalar(t));
     }
 
     public void consoleDisplay()
