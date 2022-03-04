@@ -1,8 +1,6 @@
 package com.ryan.shapes;
-import com.ryan.Ray;
-import com.ryan.Vector3D;
-
-import java.lang.constant.Constable;
+import com.ryan.components.Ray;
+import com.ryan.components.Vector3D;
 
 public class Sphere extends Shape
 {
@@ -23,6 +21,13 @@ public class Sphere extends Shape
         this();
         this.c = c;
         this.r = r;
+        this.rgb = Shape.WHITE;
+    }
+
+    public Sphere(Vector3D c, double r, int rgb)
+    {
+        this(c,r);
+        this.rgb = rgb;
     }
 
     @Override

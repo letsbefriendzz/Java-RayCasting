@@ -1,4 +1,4 @@
-package com.ryan;
+package com.ryan.components;
 
 public class RasterOptions
 {

@@ -1,4 +1,4 @@
-package com.ryan;
+package com.ryan.components;
 import java.lang.Math;
 
 /*

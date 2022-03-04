@@ -1,6 +1,6 @@
 package com.ryan.shapes;
 
-import com.ryan.Vector3D;
+import com.ryan.components.Vector3D;
 
 public class Surface
 {

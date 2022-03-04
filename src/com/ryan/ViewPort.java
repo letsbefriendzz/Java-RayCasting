@@ -1,5 +1,9 @@
 package com.ryan;
 
+import com.ryan.components.RasterOptions;
+import com.ryan.components.Ray;
+import com.ryan.components.Vector3D;
+
 import java.util.ArrayList;
 
 public class ViewPort
@@ -79,5 +83,11 @@ public class ViewPort
     public Vector3D getEye()
     {
         return eye;
+    }
+
+    public boolean transformEye( Vector3D t )
+    {
+        this.eye = this.eye.add(t);
+        return true;
     }
 }
