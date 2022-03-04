@@ -1,6 +1,5 @@
-package com.ryan;
+package com.ryan.render_engine;
 
-import com.ryan.components.RasterOptions;
 import com.ryan.components.Ray;
 import com.ryan.components.Vector3D;
 
@@ -58,6 +57,7 @@ public class ViewPort
             double h = r.height;
             double asp = w/h;
             rays.add(new ArrayList<>());
+
             for(int x = 0; x < r.width; x++)
             {
                 // puts the coordinates into 0 -> 1 space
@@ -73,7 +73,7 @@ public class ViewPort
                 // vertical images are for losers
                 Px = Px * asp; // accommodate for aspect ratio
 
-                rays.get(y).add(new Ray(eye, new Vector3D(Px, Py, zOffset)));
+                rays.get(y).add(new Ray(eye, new Vector3D(Px, Py, zOffset)).transform( new Vector3D( 0, 0, 0 ) ));
             }
         }
 

@@ -1,5 +1,15 @@
 package com.ryan.components;
 
+import java.awt.image.RasterOp;
+
+/*
+CLASS:      Ray
+DESC:
+    Describes a ray that is cast from our eye in a given direction. A ray has two members:
+    The origin (A 3D vector) and a direction (another 3D vector). The direction is always
+    normalized. We can traverse this line using the eval function, which takes a scalar t
+    and returns a Vector3D using o + t(d).
+ */
 public class Ray
 {
     private Vector3D origin;
@@ -22,6 +32,7 @@ public class Ray
         r.eval(1.5).consoleDisplay();
     }
 
+    // constructors
     public Ray()
     {
         origin      = new Vector3D(0,0,0);
@@ -40,6 +51,7 @@ public class Ray
         this.direction = new Vector3D(dx, dy, dz).getNormalized();
     }
 
+    // setters
     public void setOrigin(Vector3D origin)
     {
         this.origin = origin;
@@ -60,6 +72,7 @@ public class Ray
         this.direction = new Vector3D(x,y,z);
     }
 
+    // getters
     public Vector3D getOrigin()
     {
         return this.origin;
@@ -70,11 +83,18 @@ public class Ray
         return this.direction;
     }
 
+    // evaluate function; allows us to traverse the line
     public Vector3D eval(double t)
     {
         return this.origin.add(this.direction.multiplyScalar(t));
     }
 
+    public Ray transform(Vector3D t)
+    {
+        return new Ray( this.origin.add(t), this.direction.add(t) );
+    }
+
+    // console display for debugging
     public void consoleDisplay()
     {
         origin.consoleDisplay();

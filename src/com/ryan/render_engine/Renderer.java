@@ -1,9 +1,8 @@
-package com.ryan;
+package com.ryan.render_engine;
 
-import com.ryan.components.RasterOptions;
 import com.ryan.components.Ray;
-import com.ryan.shapes.HitDetection;
-import com.ryan.shapes.Shape;
+import com.ryan.environment.Scene;
+import com.ryan.environment.shapes.HitDetection;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class Renderer
         if(hd != null)
             img.setRGB(x, y, hd.shape.getRgb());
         else
-            img.setRGB(x,y, Shape.BLACK);
+            img.setRGB(x,y, RasterOptions.BLACK);
     }
 
     public static BufferedImage renderScene(Scene scene, ArrayList<ArrayList<Ray>> rays, RasterOptions raster)
@@ -38,7 +37,6 @@ public class Renderer
             {
                 //for each ray that we have, we're iterating through each object to check if the ray intersects
                 //this is super inefficient but I don't care
-
                 HitDetection closestObject = null;
                 for (int i = 0; i < scene.getShapes().size(); i++)
                 {

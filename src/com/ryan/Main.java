@@ -1,15 +1,11 @@
 package com.ryan;
-/*
-NOTES
 
-Camera class is probably redundant, it's literally just an origin point for all of the
-rays in a perspective view
- */
-
-import com.ryan.components.RasterOptions;
+import com.ryan.render_engine.RasterOptions;
 import com.ryan.components.Vector3D;
-import com.ryan.shapes.Shape;
-import com.ryan.shapes.Sphere;
+import com.ryan.environment.Scene;
+import com.ryan.environment.shapes.Sphere;
+import com.ryan.render_engine.Renderer;
+import com.ryan.render_engine.ViewPort;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,17 +16,17 @@ public class Main
 {
     public static void main(String[] args)
     {
-        int width = 1920;
-        int height = 1080;
+        int width = 1200;
+        int height = 400;
 
         Scene s             = new Scene();
         RasterOptions rp    = new RasterOptions(width,height,1);
         ViewPort vp         = new ViewPort();
 
         // ad shapes
-        s.addShape(new Sphere(new Vector3D(-18, -3, 12), 2.75, Shape.YELLOW ) );
-        s.addShape(new Sphere(new Vector3D(4,2,14), 4.5, Shape.ORANGE ) );
-        s.addShape(new Sphere(new Vector3D(48, 0, 48), 4.15, Shape.GREEN ) );
+        s.addShape(new Sphere(new Vector3D(-18, -3, 12), 2.75, RasterOptions.YELLOW ) );
+        s.addShape(new Sphere(new Vector3D(4,2,14), 4.5, RasterOptions.ORANGE ) );
+        s.addShape(new Sphere(new Vector3D(32, 0, 48), 4.15, RasterOptions.GREEN ) );
 
         System.out.println("Eye:");
         vp.getEye().consoleDisplay();

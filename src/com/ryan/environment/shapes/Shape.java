@@ -1,21 +1,15 @@
-package com.ryan.shapes;
-
+package com.ryan.environment.shapes;
 import com.ryan.components.Ray;
 
+/*
+The parent class of all shapes that can be used in 3D space.
+ */
 public class Shape
 {
     public static String SPHERE = "Sphere";
     public static String SQUARE = "Square";
     public static String CUBE   = "Cube";
     public static String NULL   = "NULL";
-
-    public final static int RED       = (255<<16)|(0<<8)|(0);
-    public final static int YELLOW    = (250<<16)|(253<<8)|(15);
-    public final static int GREEN     = (0<<16)|(255<<8)|(0);
-    public final static int BLUE      = (0<<16)|(0<<8)|(255);
-    public final static int ORANGE    = (255<<16)|(140<<8)|(0);
-    public final static int WHITE     = (255<<16)|(255<<8)|(255);
-    public final static int BLACK     = (0<<16)|(0<<8)|(0);
 
     protected String type;
     protected int rgb;

@@ -1,7 +1,15 @@
-package com.ryan.shapes;
+package com.ryan.environment.shapes;
+import com.ryan.render_engine.RasterOptions;
 import com.ryan.components.Ray;
 import com.ryan.components.Vector3D;
 
+/*
+A sphere, a really basic 3D object and the easiest to render. So I
+made it first. Contains a Vector3D as the centre, and a double to
+represent the radius.
+
+Has a few overloaded functions for ray intersection and console display.
+ */
 public class Sphere extends Shape
 {
     // CENTRE POINT OF THE SPHERE
@@ -21,7 +29,7 @@ public class Sphere extends Shape
         this();
         this.c = c;
         this.r = r;
-        this.rgb = Shape.WHITE;
+        this.rgb = RasterOptions.WHITE;
     }
 
     public Sphere(Vector3D c, double r, int rgb)
@@ -30,6 +38,9 @@ public class Sphere extends Shape
         this.rgb = rgb;
     }
 
+    /*
+    See Fundamentals of Computer Graphics 5th Edition, p87
+     */
     @Override
     public HitDetection rayIntersect(Ray ray, double render)
     {

@@ -1,7 +1,15 @@
-package com.ryan.components;
+package com.ryan.render_engine;
 
 public class RasterOptions
 {
+    public final static int RED       = (255<<16)|(0<<8)|(0);
+    public final static int YELLOW    = (250<<16)|(253<<8)|(15);
+    public final static int GREEN     = (0<<16)|(255<<8)|(0);
+    public final static int BLUE      = (0<<16)|(0<<8)|(255);
+    public final static int ORANGE    = (255<<16)|(140<<8)|(0);
+    public final static int WHITE     = (255<<16)|(255<<8)|(255);
+    public final static int BLACK     = (0<<16)|(0<<8)|(0);
+
     public int width;
     public int height;
     public int renderDistance;
