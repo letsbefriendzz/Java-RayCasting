@@ -47,7 +47,7 @@ public class ViewPort
     Generates rays and normalizes the direction, assuming our camera is at (0,0,0) and we
     generate the ViewPort frame at z + zOffset = 1
      */
-    public ArrayList<ArrayList<Ray>> generateRays(RasterOptions r)
+    public ArrayList<ArrayList<Ray>> generateRays(RasterOptions r, Vector3D transform_coordinates)
     {
         ArrayList<ArrayList<Ray>> rays = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class ViewPort
                 // vertical images are for losers
                 Px = Px * asp; // accommodate for aspect ratio
 
-                rays.get(y).add(new Ray(eye, new Vector3D(Px, Py, zOffset)).transform( new Vector3D( 0, 0, 0 ) ));
+                rays.get(y).add(new Ray(eye, new Vector3D(Px, Py, zOffset)).transform( transform_coordinates ));
             }
         }
 
