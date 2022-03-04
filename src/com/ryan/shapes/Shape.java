@@ -16,8 +16,13 @@ public class Shape
         this.type = Shape.NULL;
     }
 
-    public boolean rayIntersect(Ray ray, double mag)
+    public HitDetection rayIntersect(Ray ray, double mag)
     {
-        return false;
+        return null;
+    }
+
+    public void consoleDisplay()
+    {
+        System.out.println("Abstract Shape");
     }
 }

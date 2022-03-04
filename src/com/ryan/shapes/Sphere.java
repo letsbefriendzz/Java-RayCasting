@@ -2,6 +2,8 @@ package com.ryan.shapes;
 import com.ryan.Ray;
 import com.ryan.Vector3D;
 
+import java.lang.constant.Constable;
+
 public class Sphere extends Shape
 {
     // CENTRE POINT OF THE SPHERE
@@ -24,7 +26,7 @@ public class Sphere extends Shape
     }
 
     @Override
-    public boolean rayIntersect(Ray ray, double render)
+    public HitDetection rayIntersect(Ray ray, double render)
     {
         Vector3D d = ray.eval(render);
         Vector3D e = ray.getOrigin();
@@ -36,10 +38,19 @@ public class Sphere extends Shape
 
         if(dscrm >= 0)
         {
-            System.out.println(dscrm);
-            return true;
+            // this math may prove to be wrong later!
+            double t1 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
+            return new HitDetection( this, t1 );
         }
-        else return false;
+
+        return null;
+    }
+
+    @Override
+    public void consoleDisplay()
+    {
+        System.out.println("Sphere");
+        System.out.println("Radius:\t" + this.r);
     }
 
     public Vector3D getC()

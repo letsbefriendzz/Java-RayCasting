@@ -21,10 +21,12 @@ public class Main
         int height = 1080;
 
         Scene s             = new Scene();
-        RasterOptions rp    = new RasterOptions(width,height,10);
+        RasterOptions rp    = new RasterOptions(width,height,1);
         ViewPort vp         = new ViewPort();
 
-        s.addShape(new Sphere(new Vector3D(4,9,8), 4.5));
+        s.addShape(new Sphere(new Vector3D(4,2,14), 4.5));
+
+        s.addShape(new Sphere(new Vector3D(-18, -3, 12), 2.75));
 
         System.out.println("Eye:");
         vp.getEye().consoleDisplay();
