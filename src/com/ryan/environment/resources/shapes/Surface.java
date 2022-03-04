@@ -1,4 +1,4 @@
-package com.ryan.environment.shapes;
+package com.ryan.environment.resources.shapes;
 
 import com.ryan.components.Vector3D;
 

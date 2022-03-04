@@ -1,5 +1,5 @@
 package com.ryan.environment;
-import com.ryan.environment.shapes.Shape;
+import com.ryan.environment.resources.shapes.Shape;
 
 import java.util.ArrayList;
 

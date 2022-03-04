@@ -1,4 +1,4 @@
-package com.ryan.environment.resource.lights;
+package com.ryan.environment.resources.lights;
 
 import com.ryan.components.Vector3D;
 

@@ -4,7 +4,7 @@ import com.ryan.display.Display;
 import com.ryan.render_engine.RasterOptions;
 import com.ryan.components.Vector3D;
 import com.ryan.environment.Scene;
-import com.ryan.environment.shapes.Sphere;
+import com.ryan.environment.resources.shapes.Sphere;
 import com.ryan.render_engine.Renderer;
 import com.ryan.render_engine.ViewPort;
 

@@ -2,7 +2,7 @@ package com.ryan.render_engine;
 
 import com.ryan.components.Ray;
 import com.ryan.environment.Scene;
-import com.ryan.environment.shapes.HitDetection;
+import com.ryan.environment.resources.HitDetection;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

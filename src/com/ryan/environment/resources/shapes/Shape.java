@@ -1,5 +1,6 @@
-package com.ryan.environment.shapes;
+package com.ryan.environment.resources.shapes;
 import com.ryan.components.Ray;
+import com.ryan.environment.resources.HitDetection;
 
 /*
 The parent class of all shapes that can be used in 3D space.

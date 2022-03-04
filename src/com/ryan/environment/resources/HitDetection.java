@@ -1,4 +1,6 @@
-package com.ryan.environment.shapes;
+package com.ryan.environment.resources;
+
+import com.ryan.environment.resources.shapes.Shape;
 
 /*
 Represents a detection of a ray hitting an object. Contains the

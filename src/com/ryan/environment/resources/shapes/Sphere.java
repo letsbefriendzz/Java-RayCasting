@@ -1,4 +1,5 @@
-package com.ryan.environment.shapes;
+package com.ryan.environment.resources.shapes;
+import com.ryan.environment.resources.HitDetection;
 import com.ryan.render_engine.RasterOptions;
 import com.ryan.components.Ray;
 import com.ryan.components.Vector3D;
