@@ -29,7 +29,7 @@ public class Sphere extends Shape
         this();
         this.c = c;
         this.r = r;
-        this.rgb = RasterOptions.WHITE;
+        this.rgb = RasterOptions.Colors.WHITE;
     }
 
     public Sphere(Vector3D c, double r, int rgb)

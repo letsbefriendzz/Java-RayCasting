@@ -14,7 +14,7 @@ public class Renderer
         if(hd != null)
             img.setRGB(x, y, hd.shape.getRgb());
         else
-            img.setRGB(x,y, RasterOptions.BLACK);
+            img.setRGB(x,y, RasterOptions.Colors.BLACK);
     }
 
     public static BufferedImage renderScene(Scene scene, ArrayList<ArrayList<Ray>> rays, RasterOptions raster)

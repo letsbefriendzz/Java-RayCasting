@@ -17,7 +17,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        int width = 800;
+        int width = 600;
         int height = 400;
 
         Vector3D camera     = new Vector3D();
@@ -27,11 +27,12 @@ public class Main
         ViewPort vp         = new ViewPort();
         Display d           = new Display(rp);
 
-        // ad shapes
-        s.addShape(new Sphere(new Vector3D(-18, -3, 64), 2.75, RasterOptions.YELLOW ) );
-        s.addShape(new Sphere(new Vector3D(14,7,14), 4.5, RasterOptions.ORANGE ) );
-        s.addShape(new Sphere(new Vector3D(32, 0, 48), 4.15, RasterOptions.GREEN ) );
-        s.addShape(new Sphere(new Vector3D(-36, 19, 64), 6));
+        // add shapes
+        s.addShape(new Sphere( new Vector3D( 8, 0, 12 ), 4, RasterOptions.Colors.Vaporwave.GREEN ));
+        s.addShape(new Sphere( new Vector3D( 6, -4, 20 ), 3, RasterOptions.Colors.Vaporwave.PURPLE ));
+
+        s.addShape(new Sphere( new Vector3D( -16, 4, 18 ), 5, RasterOptions.Colors.Vaporwave.BLUE ));
+        s.addShape(new Sphere( new Vector3D(-20, -4, 44 ), 5, RasterOptions.Colors.Vaporwave.YELLOW));
 
         System.out.println("Eye:");
         vp.getEye().consoleDisplay();
