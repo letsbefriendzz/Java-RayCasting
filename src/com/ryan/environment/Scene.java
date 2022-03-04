@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Scene
 {
-    ArrayList<Shape> shapes;
+    public ArrayList<Shape> shapes;
 
     public Scene()
     {
@@ -15,10 +15,5 @@ public class Scene
     public void addShape(Shape s)
     {
         this.shapes.add(s);
-    }
-
-    public ArrayList<Shape> getShapes()
-    {
-        return shapes;
     }
 }

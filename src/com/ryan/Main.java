@@ -8,17 +8,14 @@ import com.ryan.environment.shapes.Sphere;
 import com.ryan.render_engine.Renderer;
 import com.ryan.render_engine.ViewPort;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        int width = 600;
-        int height = 400;
+        int width   = 600;
+        int height  = 400;
 
         Vector3D camera     = new Vector3D();
 
@@ -44,12 +41,6 @@ public class Main
             d.setFrame(img);
         }
 
-        /*
-        File out = new File("C:\\_retemp\\test.bmp");
-        try
-        {
-            ImageIO.write(img, "BMP", out);
-        } catch (IOException ioe) {}
-         */
+
     }
 }

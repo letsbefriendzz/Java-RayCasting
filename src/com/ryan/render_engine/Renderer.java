@@ -38,9 +38,9 @@ public class Renderer
                 //for each ray that we have, we're iterating through each object to check if the ray intersects
                 //this is super inefficient but I don't care
                 HitDetection closestObject = null;
-                for (int i = 0; i < scene.getShapes().size(); i++)
+                for (int i = 0; i < scene.shapes.size(); i++)
                 {
-                    HitDetection hd = scene.getShapes().get(i).rayIntersect( rays.get(y).get(x), raster.renderDistance );
+                    HitDetection hd = scene.shapes.get(i).rayIntersect( rays.get(y).get(x), raster.renderDistance );
                     if ( hd != null)
                     {
                         if(closestObject == null)
