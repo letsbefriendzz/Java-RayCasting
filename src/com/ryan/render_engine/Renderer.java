@@ -45,7 +45,7 @@ public class Renderer
                     {
                         if(closestObject == null)
                             closestObject = hd;
-                        else if (closestObject.interval > hd.interval)
+                        else if (closestObject.t > hd.t)
                             closestObject = hd;
                     }
                 }

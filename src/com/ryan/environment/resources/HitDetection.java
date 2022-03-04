@@ -1,5 +1,6 @@
 package com.ryan.environment.resources;
 
+import com.ryan.components.Vector3D;
 import com.ryan.environment.resources.shapes.Shape;
 
 /*
@@ -11,11 +12,13 @@ that returned true in its rayIntersection function.
 public class HitDetection
 {
     public Shape shape;
-    public double interval;
+    public double t;
+    public Vector3D normal;
 
-    public HitDetection(Shape s, double i)
+    public HitDetection(Shape s, double t, Vector3D normal)
     {
         this.shape = s;
-        this.interval = i;
+        this.t = t;
+        this.normal = normal;
     }
 }

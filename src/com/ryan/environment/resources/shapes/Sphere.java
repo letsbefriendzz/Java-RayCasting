@@ -57,7 +57,7 @@ public class Sphere extends Shape
         {
             // this math may prove to be wrong later!
             double t1 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
-            return new HitDetection( this, t1 );
+            return new HitDetection( this, t1, ray.eval(t1) );
         }
 
         return null;

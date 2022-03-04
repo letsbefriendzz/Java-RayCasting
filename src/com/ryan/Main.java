@@ -17,7 +17,7 @@ public class Main
         int width   = 600;
         int height  = 400;
 
-        Vector3D camera     = new Vector3D();
+        Vector3D camera     = new Vector3D(0,0,0);
 
         Scene s             = new Scene();
         RasterOptions rp    = new RasterOptions(width,height,1);
@@ -31,16 +31,11 @@ public class Main
         s.addShape(new Sphere( new Vector3D( -16, 4, 18 ), 5, RasterOptions.Colors.Vaporwave.BLUE ));
         s.addShape(new Sphere( new Vector3D(-20, -4, 44 ), 5, RasterOptions.Colors.Vaporwave.YELLOW));
 
-        System.out.println("Eye:");
-        vp.getEye().consoleDisplay();
-
-        while(true)
+        while(camera.getZ() < 1.0)
         {
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
             camera = camera.add( new Vector3D( 0.00, 0, 0.005 ) );
             d.setFrame(img);
         }
-
-
     }
 }
