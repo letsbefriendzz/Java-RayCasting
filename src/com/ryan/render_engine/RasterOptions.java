@@ -30,11 +30,14 @@ public class RasterOptions
     public int width;
     public int height;
 
-    // really uncertain as to what renderScale does!!!!
-    public int renderScale;
+    // do not modify this shit
+    public final int renderScale = 1;
+    // you can and will kill the rendering process !
 
     public static int getRandomColour()
     {
+        // lol this design is shit
+        // don't keep this
         int[] colors = { RED, YELLOW, GREEN, BLUE, ORANGE, WHITE, Colors.Vaporwave.BLUE, Colors.Vaporwave.PINK,
                         Colors.Vaporwave.GREEN, Colors.Vaporwave.PURPLE, Colors.Vaporwave.YELLOW };
 
@@ -46,7 +49,6 @@ public class RasterOptions
     {
         this.width = 400;
         this.height = 800;
-        this.renderScale = 1;
     }
 
     // init with dimensions
@@ -59,7 +61,6 @@ public class RasterOptions
         {
             this.width = width;
             this.height = height;
-            this.renderScale = 1;
         }
     }
 }

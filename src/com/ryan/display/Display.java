@@ -27,4 +27,9 @@ public class Display
     {
         this.label.setIcon(new ImageIcon(img));
     }
+
+    public void close()
+    {
+        this.frame.dispose();
+    }
 }

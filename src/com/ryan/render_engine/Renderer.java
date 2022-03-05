@@ -50,7 +50,6 @@ public class Renderer
                 {
                     for (int l = 0; l < scene.lights.size(); l++)
                     {
-                        //closestObject.consoleDisplay();
                         colour = scene.lights.get(l).shade( closestObject );
                     }
                 }

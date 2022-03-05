@@ -1,7 +1,5 @@
 package com.ryan.components;
 
-import java.awt.image.RasterOp;
-
 /*
 CLASS:      Ray
 DESC:
@@ -84,6 +82,7 @@ public class Ray
     }
 
     // evaluate function; allows us to traverse the line
+    // o + d(t)
     public Vector3D eval(double t)
     {
         return this.origin.add(this.direction.multiplyScalar(t));

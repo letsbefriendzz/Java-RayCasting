@@ -72,9 +72,14 @@ public class Sphere extends Shape
             double t2 = -1.0;
 
             if (dscrm > 0)
+            {
                 t2 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
-
-            return new HitDetection( this, t1, t2, ray.eval(t1) );
+                return new HitDetection( this, t1, t2, ray.eval(t1), ray.eval(t2) );
+            }
+            else
+            {
+                return new HitDetection( this, t1, t2, ray.eval(t1), null );
+            }
         }
 
         return null;

@@ -1,13 +1,17 @@
 package com.ryan;
 
+import com.ryan.components.Matrix33;
 import com.ryan.display.Display;
 import com.ryan.environment.resources.lights.Light;
+import com.ryan.environment.resources.lights.PointLight;
+import com.ryan.environment.resources.lights.SpotLight;
 import com.ryan.render_engine.RasterOptions;
 import com.ryan.components.Vector3D;
 import com.ryan.environment.Scene;
 import com.ryan.environment.resources.shapes.Sphere;
 import com.ryan.render_engine.Renderer;
 import com.ryan.render_engine.ViewPort;
+import com.sun.jdi.connect.TransportTimeoutException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,7 +22,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        int width   = 800;
+        int width   = 600;
         int height  = 400;
 
         Vector3D camera     = new Vector3D(0,0,0);
@@ -36,24 +40,20 @@ public class Main
         s.addShape( new Sphere( new Vector3D( -16, -6, 14 ), 0.4, RasterOptions.Colors.Vaporwave.BLUE ) );
 
         // add a light
-        s.addLight( new Light());
+        s.addLight( new PointLight( new Vector3D( 0, -2, 4 ), 3 ) );
 
         int i = 0;
-        while(i < 500)
+        while(i < 350)
         {
-            File f = new File("C:\\_test_files\\test" + i + ".bmp");
+            // uncomment for file writing if needed /shrug
+            // File f = new File("C:\\_test_files\\test" + i + ".bmp");
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
-            try
-            {
-                ImageIO.write(img,"BMP", f);
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            camera = camera.add(new Vector3D(0,0,0.005));
+            camera = camera.add(new Vector3D(0,0,0.0025));
             d.setFrame(img);
             i++;
         }
+
+        d.close();
     }
 }
 
