@@ -1,5 +1,7 @@
 # Ray Casting
 
+![Spheres!](readme_docs/test.gif)
+
 Ray casting is an image based method of rendering a 3D scene to a 2D image. In short, for each pixel in
 a rendered image, a line is drawn from an origin point over 3D space. Wherever these lines, or "rays",
 collide with an object, a pixel is rendered given that object's properties.
