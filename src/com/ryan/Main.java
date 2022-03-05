@@ -9,7 +9,11 @@ import com.ryan.environment.resources.shapes.Sphere;
 import com.ryan.render_engine.Renderer;
 import com.ryan.render_engine.ViewPort;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class Main
 {
     public static void main(String[] args)
@@ -35,9 +39,17 @@ public class Main
         s.addLight( new Light());
 
         int i = 0;
-        while(true)
+        while(i < 500)
         {
+            File f = new File("C:\\_test_files\\test" + i + ".bmp");
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
+            try
+            {
+                ImageIO.write(img,"BMP", f);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
             camera = camera.add(new Vector3D(0,0,0.005));
             d.setFrame(img);
             i++;

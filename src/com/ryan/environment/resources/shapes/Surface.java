@@ -58,6 +58,14 @@ public class Surface extends Shape
     @Override
     public HitDetection rayIntersect(Ray ray, double mag)
     {
+        /*
+        To determine a ray intersection with a triangle we have to...
+            1. Determine if the ray intersects the plane that the triangle is on
+            2. If it does, determine if the ray-plane intersection is within the triangle.
+
+        given a ray p = e + t(d)
+        and a plane (p - a) . n
+         */
         return null;
     }
 }

@@ -11,6 +11,8 @@ public class Shape
     public static String SQUARE = "Square";
     public static String CUBE   = "Cube";
     public static String NULL   = "NULL";
+    public static String SURFACE    = "Surface";
+    public static String TRIANGLE   = "Surface";
 
     protected String type;
     protected int rgb;
