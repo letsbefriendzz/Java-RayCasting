@@ -37,4 +37,6 @@ the camera. We then translate our raster image size to coordinates within this 2
 the coordinates by the aspect ratio if we are not rendering a square image. Thus we end up with an
 `ArrayList` of `ArrayList`s of `Ray` objects.
 
-## Ray - Sphere Intersection
+These rays, along with our scene, are passed to the renderer, where we evaluate each ray and determine
+if it hits any objects within our scene. Based on the present lighting and which object is hit first,
+we render a colour to the pixel.
