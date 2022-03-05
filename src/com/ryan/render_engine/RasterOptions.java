@@ -1,5 +1,9 @@
 package com.ryan.render_engine;
 
+import java.util.Random;
+
+import static com.ryan.render_engine.RasterOptions.Colors.*;
+
 public class RasterOptions
 {
     public class Colors
@@ -28,6 +32,14 @@ public class RasterOptions
 
     // really uncertain as to what renderScale does!!!!
     public int renderScale;
+
+    public static int getRandomColour()
+    {
+        int[] colors = { RED, YELLOW, GREEN, BLUE, ORANGE, WHITE, Colors.Vaporwave.BLUE, Colors.Vaporwave.PINK,
+                        Colors.Vaporwave.GREEN, Colors.Vaporwave.PURPLE, Colors.Vaporwave.YELLOW };
+
+        return colors[ new Random().nextInt(colors.length) ];
+    }
 
     // init to default 400x800
     public RasterOptions()

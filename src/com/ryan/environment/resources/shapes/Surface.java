@@ -1,8 +1,10 @@
 package com.ryan.environment.resources.shapes;
 
+import com.ryan.components.Ray;
 import com.ryan.components.Vector3D;
+import com.ryan.environment.resources.HitDetection;
 
-public class Surface
+public class Surface extends Shape
 {
     private Vector3D a;
     private Vector3D b;
@@ -50,5 +52,12 @@ public class Surface
     public void setC(Vector3D c)
     {
         this.c = c;
+    }
+
+    //10.6
+    @Override
+    public HitDetection rayIntersect(Ray ray, double mag)
+    {
+        return null;
     }
 }
