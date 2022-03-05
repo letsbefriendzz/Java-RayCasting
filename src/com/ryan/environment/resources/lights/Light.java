@@ -1,6 +1,8 @@
 package com.ryan.environment.resources.lights;
 
 import com.ryan.components.Vector3D;
+import com.ryan.environment.resources.HitDetection;
+import com.ryan.environment.resources.shapes.Shape;
 import com.ryan.render_engine.RasterOptions;
 
 public class Light
@@ -37,5 +39,10 @@ public class Light
     public void setColor(int color)
     {
         this.color = color;
+    }
+
+    public int shade(HitDetection s)
+    {
+        return s.shape.getRgb();
     }
 }

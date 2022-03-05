@@ -11,6 +11,7 @@ public class RasterOptions
         public final static int ORANGE    = (255<<16)|(140<<8)|(0);
         public final static int WHITE     = (255<<16)|(255<<8)|(255);
         public final static int BLACK     = (0<<16)|(0<<8)|(0);
+        public final static int GRAY      = (30<<16)|(30<<8)|(30);
 
         public class Vaporwave
         {
@@ -24,18 +25,20 @@ public class RasterOptions
 
     public int width;
     public int height;
-    public int renderDistance;
+
+    // really uncertain as to what renderScale does!!!!
+    public int renderScale;
 
     // init to default 400x800
     public RasterOptions()
     {
         this.width = 400;
         this.height = 800;
-        this.renderDistance = 5;
+        this.renderScale = 1;
     }
 
     // init with dimensions
-    public RasterOptions(int width, int height, int rd)
+    public RasterOptions(int width, int height)
     {
         this();
 
@@ -44,7 +47,7 @@ public class RasterOptions
         {
             this.width = width;
             this.height = height;
-            this.renderDistance = rd;
+            this.renderScale = 1;
         }
     }
 }

@@ -12,13 +12,25 @@ that returned true in its rayIntersection function.
 public class HitDetection
 {
     public Shape shape;
-    public double t;
-    public Vector3D normal;
+    public double t1;
+    public double t2;
+    public Vector3D hit;
 
-    public HitDetection(Shape s, double t, Vector3D normal)
+    public HitDetection(Shape s, double t1, double t2, Vector3D hit)
     {
         this.shape = s;
-        this.t = t;
-        this.normal = normal;
+        this.t1 = t1;
+        this.t2 = t2;
+        this.hit = hit;
+    }
+
+    public void consoleDisplay()
+    {
+        this.shape.consoleDisplay();
+        System.out.println();
+        System.out.println("t1:\t" + t1);
+        System.out.println("t2:\t" + t2);
+        this.hit.consoleDisplay();
+        System.out.println();
     }
 }

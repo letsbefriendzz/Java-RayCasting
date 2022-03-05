@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class Display
 {
-    private JFrame frame;
+    public JFrame frame;
     private JLabel label;
 
     public Display(RasterOptions rp)

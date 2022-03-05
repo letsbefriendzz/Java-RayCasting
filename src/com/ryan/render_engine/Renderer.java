@@ -9,12 +9,9 @@ import java.util.ArrayList;
 
 public class Renderer
 {
-    public static void setPixel(BufferedImage img, HitDetection hd, int x, int y)
+    public static void setPixel(BufferedImage img, int rgb, int x, int y)
     {
-        if(hd != null)
-            img.setRGB(x, y, hd.shape.getRgb());
-        else
-            img.setRGB(x,y, RasterOptions.Colors.BLACK);
+        img.setRGB(x, y, rgb);
     }
 
     public static BufferedImage renderScene(Scene scene, ArrayList<ArrayList<Ray>> rays, RasterOptions raster)
@@ -35,22 +32,29 @@ public class Renderer
         {
             for(int x = 0; x < width; x++)
             {
-                //for each ray that we have, we're iterating through each object to check if the ray intersects
-                //this is super inefficient but I don't care
                 HitDetection closestObject = null;
                 for (int i = 0; i < scene.shapes.size(); i++)
                 {
-                    HitDetection hd = scene.shapes.get(i).rayIntersect( rays.get(y).get(x), raster.renderDistance );
-                    if ( hd != null)
+                    HitDetection hd = scene.shapes.get(i).rayIntersect( rays.get(y).get(x), raster.renderScale);
+                    if ( hd != null )
                     {
                         if(closestObject == null)
                             closestObject = hd;
-                        else if (closestObject.t > hd.t)
+                        else if (closestObject.t1 > hd.t1)
                             closestObject = hd;
                     }
                 }
 
-                setPixel(img, closestObject, x, y);
+                int colour = RasterOptions.Colors.BLACK;
+                if(closestObject != null)
+                {
+                    for (int l = 0; l < scene.lights.size(); l++)
+                    {
+                        //closestObject.consoleDisplay();
+                        colour = scene.lights.get(l).shade( closestObject );
+                    }
+                }
+                setPixel(img, colour, x, y);
             }
         }
 

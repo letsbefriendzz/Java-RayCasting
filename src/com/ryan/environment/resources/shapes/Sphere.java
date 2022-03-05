@@ -39,25 +39,42 @@ public class Sphere extends Shape
         this.rgb = rgb;
     }
 
-    /*
-    See Fundamentals of Computer Graphics 5th Edition, p87
-     */
-    @Override
-    public HitDetection rayIntersect(Ray ray, double render)
+    public double intersectDiscriminant(Ray ray, double t)
     {
-        Vector3D d = ray.eval(render);
+        Vector3D d = ray.eval(t);
         Vector3D e = ray.getOrigin();
         Vector3D c = this.c;
         double R = this.r;
 
-        // oh SHIT
-        double dscrm = (Math.pow( d.dot(e.sub(c)), 2 ) - ( d.dot(d) * ( e.sub(c).dot( e.sub(c) ) ) - Math.pow(R, 2) ) );
+        // render distance issue likely exists within this or rayIntersect
+        return (Math.pow( d.dot(e.sub(c)), 2 ) - ( d.dot(d) * ( e.sub(c).dot( e.sub(c) ) ) - Math.pow(R, 2) ) );
+    }
+
+    /*
+    See Fundamentals of Computer Graphics 5th Edition, p87
+     */
+    @Override
+    public HitDetection rayIntersect(Ray ray, double t)
+    {
+        double dscrm = intersectDiscriminant(ray, t);
 
         if(dscrm >= 0)
         {
+            Vector3D d = ray.eval(t);
+            Vector3D e = ray.getOrigin();
+            Vector3D c = this.c;
+
             // this math may prove to be wrong later!
-            double t1 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
-            return new HitDetection( this, t1, ray.eval(t1) );
+
+            //new Vector3D(0,0,0).sub(d).dot(e.sub(c))
+            // i think we take the - first, then the +
+            double t1 = ( ( 0.0 - d.dot(e.sub(c)) ) - dscrm ) / d.dot(d);
+            double t2 = -1.0;
+
+            if (dscrm > 0)
+                t2 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
+
+            return new HitDetection( this, t1, t2, ray.eval(t1) );
         }
 
         return null;
@@ -68,6 +85,11 @@ public class Sphere extends Shape
     {
         System.out.println("Sphere");
         System.out.println("Radius:\t" + this.r);
+    }
+
+    public Sphere transform(Vector3D t)
+    {
+        return new Sphere( this.c.add(t), this.r );
     }
 
     public Vector3D getC()
