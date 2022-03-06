@@ -7,12 +7,13 @@ import com.ryan.render_engine.RasterOptions;
 public class Light
 {
     private Vector3D source;
+
     private int color;
 
     public Light()
     {
         source = new Vector3D();
-        color = RasterOptions.Colors.WHITE;
+        color = RasterOptions.Colors.Vaporwave.PURPLE;
     }
 
     public Light(Vector3D s)
@@ -43,5 +44,6 @@ public class Light
     public int shade(HitDetection s)
     {
         return s.shape.getRgb();
+        //return RasterOptions.avgRgb( s.shape.getRgb(), this.color );
     }
 }

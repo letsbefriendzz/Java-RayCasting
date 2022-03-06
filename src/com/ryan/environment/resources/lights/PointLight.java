@@ -23,9 +23,11 @@ public class PointLight extends Light
         // construct a new ray with the light source as the origin and the coordinates
         // that we found an object
         Ray ray = new Ray( this.getSource(), hd.hit1 );
+        //ray.consoleDisplay();
+        //System.out.println();
 
         // find all points where the line passes through this object
-        HitDetection light_ray = hd.shape.rayIntersect(ray, 1);
+        HitDetection light_ray = hd.shape.rayIntersect(ray, -15);
 
         // if it is not null, it means that the light ray stretches out to touch our object
         if (light_ray != null)
@@ -37,7 +39,6 @@ public class PointLight extends Light
             System.out.println();
             hd.consoleDisplay();
             System.out.println();
-
             System.out.println("\n===============================================\n");
         }
 

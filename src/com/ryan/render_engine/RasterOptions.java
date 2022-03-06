@@ -16,6 +16,7 @@ public class RasterOptions
         public final static int WHITE     = (255<<16)|(255<<8)|(255);
         public final static int BLACK     = (0<<16)|(0<<8)|(0);
         public final static int GRAY      = (30<<16)|(30<<8)|(30);
+        public final static int NULL      = 0;
 
         public class Vaporwave
         {
@@ -42,6 +43,23 @@ public class RasterOptions
                         Colors.Vaporwave.GREEN, Colors.Vaporwave.PURPLE, Colors.Vaporwave.YELLOW };
 
         return colors[ new Random().nextInt(colors.length) ];
+    }
+
+    public static int avgRgb(int rgb_a, int rgb_b)
+    {
+        int b1 = (rgb_a)&0xFF;
+        int g1 = (rgb_a>>8)&0xFF;
+        int r1 = (rgb_a>>16)&0xFF;
+
+        int b2 = (rgb_b)&0xFF;
+        int g2 = (rgb_b>>8)&0xFF;
+        int r2 = (rgb_b>>16)&0xFF;
+
+        int b3 = (b1+b2)/2;
+        int g3 = (g1+g2)/2;
+        int r3 = (r1+r2)/2;
+
+        return (r3<<16)|(g3<<8)|(b3);
     }
 
     // init to default 400x800
