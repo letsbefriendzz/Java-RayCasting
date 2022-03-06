@@ -6,6 +6,7 @@ import com.ryan.render_engine.RasterOptions;
 
 public class Light
 {
+    public static boolean DEBUG = false;
     private Vector3D source;
 
     private int color;

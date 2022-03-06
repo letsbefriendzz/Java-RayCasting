@@ -7,6 +7,8 @@ The parent class of all shapes that can be used in 3D space.
  */
 public class Shape
 {
+    public static boolean DEBUG = false;
+
     public static String SPHERE = "Sphere";
     public static String SQUARE = "Square";
     public static String CUBE   = "Cube";
@@ -40,5 +42,10 @@ public class Shape
     public void setRgb(int rgb)
     {
         this.rgb = rgb;
+    }
+
+    public String getType()
+    {
+        return this.type;
     }
 }

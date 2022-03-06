@@ -3,9 +3,8 @@ package com.ryan.environment.resources.lights;
 import com.ryan.components.Ray;
 import com.ryan.components.Vector3D;
 import com.ryan.environment.resources.HitDetection;
+import com.ryan.environment.resources.shapes.Shape;
 import com.ryan.render_engine.RasterOptions;
-
-import java.awt.*;
 
 public class PointLight extends Light
 {
@@ -20,34 +19,51 @@ public class PointLight extends Light
     @Override
     public int shade(HitDetection hd)
     {
+        double distance = this.getSource().getDistance( hd.hit1 );
         // construct a new ray with the light source as the origin and the coordinates
         // that we found an object
         Ray ray = new Ray( this.getSource(), hd.hit1 );
-        //ray.consoleDisplay();
-        //System.out.println();
+
+        if(Light.DEBUG)
+        {
+            // <test>
+            // we are creating a new ray that uses the light source a the origin point,
+            // and points in the direction of the location on an object that is visible
+            // to the screen. If we use the light origin and the hit vector as our origin
+            // and destination, we should be able to traverse this light ray and reach
+            // the exact coordinates of the point of hit1 or hit2. this debugging code
+            // dumps the information about the light ray to the console, as well as the
+            // first and second hit location information.
+            System.out.println("LIGHT RAY:");
+            ray.eval(distance).consoleDisplay();
+            System.out.println();
+            System.out.println("HIT DETECTION T1 & T2:");
+            hd.hit1.consoleDisplay();
+            System.out.println();
+            hd.hit2.consoleDisplay();
+            System.out.println("\n");
+            // </test>
+        }
 
         // find all points where the line passes through this object
-        HitDetection light_ray = hd.shape.rayIntersect(ray, -15);
+        HitDetection light_ray = hd.shape.rayIntersect(ray, 1);
 
         // if it is not null, it means that the light ray stretches out to touch our object
-        if (light_ray != null)
+        if (light_ray != null && hd.shape.getType() != Shape.NULL)
         {
             // our point light collides with the object
             // we now need to figure out if the point that we are rendering is the first or
             // second intersection of the object.
-            light_ray.consoleDisplay();
-            System.out.println();
-            hd.consoleDisplay();
-            System.out.println();
-            System.out.println("\n===============================================\n");
+            if(Light.DEBUG)
+            {
+                light_ray.consoleDisplay();
+                System.out.println();
+                hd.consoleDisplay();
+                System.out.println();
+                System.out.println("\n===============================================\n");
+            }
         }
 
-        double distance = this.getSource().getDistance( hd.hit1 );
-        double val = distance / strength;
-        if (distance < strength)
-        {
-            return hd.shape.getRgb();
-        }
-        return RasterOptions.Colors.GRAY;
+        return hd.shape.getRgb();
     }
 }

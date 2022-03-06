@@ -1,10 +1,9 @@
 package com.ryan;
 
-import com.ryan.components.Matrix33;
 import com.ryan.display.Display;
 import com.ryan.environment.resources.lights.Light;
 import com.ryan.environment.resources.lights.PointLight;
-import com.ryan.environment.resources.lights.SpotLight;
+import com.ryan.environment.resources.shapes.Shape;
 import com.ryan.render_engine.RasterOptions;
 import com.ryan.components.Vector3D;
 import com.ryan.environment.Scene;
@@ -25,6 +24,8 @@ public class Main
         int width   = 600;
         int height  = 400;
 
+        Light.DEBUG = true;
+
         Vector3D camera     = new Vector3D(0,0,0);
 
         Scene s             = new Scene();
@@ -32,16 +33,13 @@ public class Main
         ViewPort vp         = new ViewPort();
         Display d           = new Display(rp);
 
-        // add shapes
-        // s.addShape( new Sphere( new Vector3D( 0, -2, 4 ),0.2 ) );
-        s.addShape( new Sphere( new Vector3D( 0, 0, 12 ), 6, RasterOptions.Colors.Vaporwave.YELLOW ) );
-        //s.addShape( new Sphere( new Vector3D( 4, 0, 18 ), 1, RasterOptions.Colors.Vaporwave.PINK ) );
-        //s.addShape( new Sphere( new Vector3D( -8, 4, 18 ), 2, RasterOptions.Colors.Vaporwave.PURPLE ) );
-        //s.addShape( new Sphere( new Vector3D( -16, -6, 14 ), 0.4, RasterOptions.Colors.Vaporwave.BLUE ) );
-
         // add a light
-        //s.addLight( new PointLight( new Vector3D( 0, -2, 4 ), 3 ) );
-        s.addLight(new Light());
+        Vector3D l = new Vector3D(0,1,12);
+        s.addLight( new PointLight( l, 6 ) );
+        s.addShape( new Sphere( l, 0.2, Shape.NULL ) );
+
+        // add shapes
+        s.addShape( new Sphere( new Vector3D( 0, 0, 12 ), 2, RasterOptions.Colors.Vaporwave.YELLOW ) );
 
         int i = 0;
         while(i < 1)

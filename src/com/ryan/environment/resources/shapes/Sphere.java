@@ -39,6 +39,12 @@ public class Sphere extends Shape
         this.rgb = rgb;
     }
 
+    public Sphere(Vector3D c, double r, String type)
+    {
+        this(c,r);
+        this.type = type;
+    }
+
     public double intersectDiscriminant(Ray ray, double t)
     {
         Vector3D d = ray.eval(t);
@@ -69,6 +75,34 @@ public class Sphere extends Shape
             //new Vector3D(0,0,0).sub(d).dot(e.sub(c))
             // i think we take the - first, then the +
             double t1 = ( ( 0.0 - d.dot(e.sub(c)) ) - dscrm ) / d.dot(d);
+
+            // runs console output if debug mode is set to on
+            if(Shape.DEBUG)
+            {
+                // <test>
+                /*
+                This testing section proves that, when reconstructing the viewing ray from its
+                origin and the point on the sphere that it intersects, we don't retrieve the *exact*
+                same line. It is, however, so small that it is likely trivial. We are dealing with
+                precision into the negative exponents here. For example, a difference of:
+
+                (-1.1102230246251565E-16, -4.440892098500626E-16, 1.7763568394002505E-15)
+                */
+                //*Should* be pretty insubstantial.
+
+                Ray testRay = new Ray( ray.getOrigin(), d );
+                Vector3D v1 = testRay.eval(t1);
+                Vector3D v2 = ray.eval(t1);
+
+                if(v1.getX() != v2.getX() || v1.getY() != v2.getY() || v1.getZ() != v2.getZ())
+                {
+                    v1.sub(v2).consoleDisplay();
+                    System.out.println();
+                    System.out.println();
+                }
+                // </test>
+            }
+
             double t2 = -1.0;
 
             if (dscrm > 0)

@@ -10,6 +10,7 @@ DESC:
  */
 public class Ray
 {
+    public static boolean DEBUG = false;
     private Vector3D origin;
     private Vector3D direction;
 
@@ -98,6 +99,5 @@ public class Ray
     {
         origin.consoleDisplay();
         direction.consoleDisplay();
-        System.out.print("  ");
     }
 }
