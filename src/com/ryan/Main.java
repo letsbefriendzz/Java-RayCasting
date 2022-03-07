@@ -20,6 +20,15 @@ import java.io.IOException;
 
 public class Main
 {
+    private static void writeFile(BufferedImage img, int i)
+    {
+        try
+        {
+            File f = new File("C:\\_test_files\\light_move" + i + ".bmp");
+            ImageIO.write( img, "bmp", f );
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+
     private static void sceneTestHarness(boolean lightDebug, boolean shapeDebug)
     {
         int width   = 1000;
@@ -43,22 +52,21 @@ public class Main
 
         // add a light
         double l_str = 5.5;
-        Vector3D l = new Vector3D(4,-10,18);
+        Vector3D l = new Vector3D(-8,-10,18);
         s.addLight( new PointLight( l, l_str ) );
         //s.addLight( new Light() );
 
         int i = 0;
-        while(i < 1)
+        while(l.getX() < 8)
         {
-            // uncomment for file writing if needed /shrug
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
-            camera = camera.add(new Vector3D(0,0,0.0025));
 
-            try
-            {
-                File f = new File("C:\\_test_files\\light_fail" + i + ".bmp");
-                ImageIO.write( img, "bmp", f );
-            } catch (IOException e) { e.printStackTrace(); }
+            l = l.add(new Vector3D(0.25, 0, 0));
+            s.lights.remove(0);
+            s.addLight( new PointLight( l, l_str ) );
+            // camera = camera.add(new Vector3D(0,0,0.0025));
+
+            writeFile(img, i);
 
             d.setFrame(img);
             i++;
