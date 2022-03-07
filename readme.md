@@ -94,7 +94,6 @@ function. This means that, while my discriminant function works, something else 
                 return new HitDetection( this, t1, t2, ray.eval(t1), null );
             }
         }
+        return null;
     }
-    return null;
-}
 ```
