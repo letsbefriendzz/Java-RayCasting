@@ -40,3 +40,54 @@ the coordinates by the aspect ratio if we are not rendering a square image. Thus
 These rays, along with our scene, are passed to the renderer, where we evaluate each ray and determine
 if it hits any objects within our scene. Based on the present lighting and which object is hit first,
 we render a colour to the pixel.
+
+### Present Issues
+
+Somewhere, somehow, I don't know how or why, but when I calculate the sphere surface coordiantes where
+a ray intersects a sphere, I'm getting a bad value. I do not know if this is my fault or something with
+Java, because I've triple checked my code at this point.
+
+If you have a sphere with an origin point O = (0, 0, 12) and a radius of 2.0, you can assume that the
+furthest that the sphere extends on any axis is O + R. This means that the furthest coordinate we should
+be returned by our ray casting is (0+-2, 0+-2, 12+-2). However, when rendering a sphere, I do not get
+get results consistently within this range. I first discovered this when attempting to create my own
+shading algorithm, where I was getting results that looked like this:
+
+![Badly lit sphere render](readme_docs/light_fail0b.bmp)
+
+My best guess is that the error occurs within my intersection detection (hah) function. It seeks to
+implement the following:
+
+![Ray-Sphere Intersection](readme_docs/ray_sphere_intersection_equation.PNG)
+
+```Java
+    @Override
+    public HitDetection rayIntersect(Ray ray, double t)
+    {
+        double dscrm = intersectDiscriminant(ray, t);
+
+        if(dscrm >= 0)
+        {
+            Vector3D d = ray.eval(t);
+            Vector3D e = ray.getOrigin();
+            Vector3D c = this.c;
+
+            // this math may prove to be wrong later!
+            //new Vector3D(0,0,0).sub(d).dot(e.sub(c))
+            
+            // i think we take the - first, then the +
+            
+            double t1 = ( ( 0.0 - d.dot(e.sub(c)) ) - dscrm ) / d.dot(d);
+            double t2 = -1.0;
+
+            if (dscrm > 0)
+            {
+                t2 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
+                return new HitDetection( this, t1, t2, ray.eval(t1), ray.eval(t2) );
+            }
+            else
+            {
+                return new HitDetection( this, t1, t2, ray.eval(t1), null );
+            }
+        }
+```
