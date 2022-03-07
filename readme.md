@@ -53,7 +53,7 @@ shading algorithm, where I was getting results that looked like this:
 The dimly lit visible centre of the sphere is due to incorrect vectors returned by my rayIntersection
 function. This means that, while my discriminant function works, something else isn't.
 
-![Ray-Sphere Intersection](readme_docs/ray_sphere_intersection_equation.PNG)
+<img src="readme_docs/ray_sphere_intersection_equation.PNG" alt="Ray-Sphere Intersection" width="325" height=auto> 
 
 ```Java
     public double intersectDiscriminant(Ray ray, double t)
