@@ -53,7 +53,7 @@ be returned by our ray casting is (0+-2, 0+-2, 12+-2). However, when rendering a
 get results consistently within this range. I first discovered this when attempting to create my own
 shading algorithm, where I was getting results that looked like this:
 
-![Badly lit sphere render](readme_docs/light_fail0b.bmp)
+![Badly lit sphere render](readme_docs/light_fail0.bmp)
 
 My best guess is that the error occurs within my intersection detection (hah) function. It seeks to
 implement the following:
