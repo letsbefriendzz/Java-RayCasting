@@ -113,6 +113,14 @@ public class Sphere extends Shape
             if (dscrm > 0)
             {
                 t2 = (A+B)/C;
+
+                if(t2 < t1)
+                {
+                    double temp = t1;
+                    t1 = t2;
+                    t2 = temp;
+                }
+
                 return new HitDetection( this, t1, t2, ray.eval(t1), ray.eval(t2) );
             }
             else
