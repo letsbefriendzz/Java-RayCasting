@@ -20,11 +20,12 @@ public class Display
         frame.setLocationRelativeTo(null);
         label = new JLabel();
         frame.getContentPane().add(label, BorderLayout.CENTER);
-        frame.setVisible(true);
     }
 
     public void setFrame(BufferedImage img)
     {
+        if(!this.frame.isVisible())
+            frame.setVisible(true);
         this.label.setIcon(new ImageIcon(img));
     }
 

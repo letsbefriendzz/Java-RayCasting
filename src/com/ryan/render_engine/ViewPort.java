@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ViewPort
 {
-    static final double zOffset = 2.25;
+    static final double zOffset = 1;
     private Vector3D eye;
     private Vector3D[] vertices = new Vector3D[4];
 

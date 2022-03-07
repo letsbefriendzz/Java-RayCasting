@@ -31,8 +31,8 @@ public class Main
 
     private static void sceneTestHarness(boolean lightDebug, boolean shapeDebug)
     {
-        int width   = 6000;
-        int height  = 6000;
+        int width   = 1000;
+        int height  = 1000;
 
         Light.DEBUG = lightDebug;
         Shape.DEBUG = shapeDebug;
@@ -42,15 +42,15 @@ public class Main
         Scene s             = new Scene();
         RasterOptions rp    = new RasterOptions(width,height);
         ViewPort vp         = new ViewPort();
-        //Display d           = new Display(rp);
+        Display d           = new Display(rp);
 
         // add shapes
         // DEBUG SPHERE:
-        s.addShape( new Sphere( new Vector3D( 0, 0, 26 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
+        s.addShape( new Sphere( new Vector3D( 0, 0, 8 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
 
         // add a light
-        double l_str = 5;
-        Vector3D l = new Vector3D(3,-7,18);
+        double l_str = 4.6;
+        Vector3D l = new Vector3D(4,-7,8);
         s.addLight( new PointLight( l, l_str ) );
         //s.addLight( new Light() );
 
@@ -61,7 +61,7 @@ public class Main
             // camera = camera.add(new Vector3D(0,0,0.0025));
 
             writeFile(img, 0);
-            //d.setFrame(img);
+            d.setFrame(img);
             i++;
         }
 

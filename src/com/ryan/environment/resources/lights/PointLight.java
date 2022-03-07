@@ -17,6 +17,21 @@ public class PointLight extends Light
     }
 
     @Override
+    public int absoluteShade(HitDetection hd)
+    {
+        Ray lightRay = new Ray( this.getSource(), hd.hit1 );
+        HitDetection lightRayHit = hd.shape.rayIntersect( lightRay, 1.0 );
+
+        if(lightRayHit != null)
+        {
+            lightRayHit.consoleDisplay();
+            System.out.println();
+        }
+
+        return hd.shape.getRgb();
+    }
+
+    @Override
     public int shade(HitDetection hd)
     {
         double distance = this.getSource().getDistance( hd.hit1 );

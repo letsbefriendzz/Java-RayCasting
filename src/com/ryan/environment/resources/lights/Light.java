@@ -44,6 +44,11 @@ public class Light
         this.color = color;
     }
 
+    public int absoluteShade(HitDetection hd)
+    {
+        return this.shade(hd);
+    }
+
     public int shade(HitDetection s)
     {
         return s.shape.getRgb();
