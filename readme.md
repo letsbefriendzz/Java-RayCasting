@@ -53,12 +53,25 @@ be returned by our ray casting is (0+-2, 0+-2, 12+-2). However, when rendering a
 get results consistently within this range. I first discovered this when attempting to create my own
 shading algorithm, where I was getting results that looked like this:
 
-![Badly lit sphere render](readme_docs/light_fail0.bmp)
+<img src="readme_docs/light_fail0.bmp" alt="Badly lit sphere render" width="500" height="600"> 
 
-My best guess is that the error occurs within my intersection detection (hah) function. It seeks to
-implement the following:
+The dimly lit visible centre of the sphere is due to incorrect vectors returned by my rayIntersection
+function. This means that, while my discriminant function works, something else isn't.
 
 ![Ray-Sphere Intersection](readme_docs/ray_sphere_intersection_equation.PNG)
+
+```Java
+    public double intersectDiscriminant(Ray ray, double t)
+    {
+        Vector3D d = ray.eval(t);
+        Vector3D e = ray.getOrigin();
+        Vector3D c = this.c;
+        double R = this.r;
+
+        // render distance issue likely exists within this or rayIntersect
+        return (Math.pow( d.dot(e.sub(c)), 2 ) - ( d.dot(d) * ( e.sub(c).dot( e.sub(c) ) ) - Math.pow(R, 2) ) );
+    }
+```
 
 ```Java
     @Override
