@@ -70,8 +70,6 @@ public class Main
     public static void main(String[] args)
     {
         sceneTestHarness(false, false);
-
-        // sceneTestHarness( true, false );
     }
 }
 
