@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class ViewPort
 {
-    static int zOffset = 1;
+    static final double zOffset = 2.25;
     private Vector3D eye;
     private Vector3D[] vertices = new Vector3D[4];
 
     /*
-    yuhhhh it's rewind time!
+    it's rewind time!
 
     so, we want a new ViewPort. convention is that we have the camera origin at (0,0,0), and that we have the
     viewport offset from the camera by one z unit. The viewport is a constant size square that is 2x2. We take
@@ -30,9 +30,9 @@ public class ViewPort
         // eye is default (0,0,0)
         this.eye = new Vector3D();
         /*
+        this isn't even used lol
         for(int i = 0; i < this.vertices.length; i++)
         {
-            // absolutely disgusting implementation, but I'm too tired to come up with a better way
             if (i==0)
                 vertices[i] = new Vector3D(-1,1,zOffset);
             else if (i==1)

@@ -24,15 +24,15 @@ public class Main
     {
         try
         {
-            File f = new File("C:\\_test_files\\light_move" + i + ".bmp");
+            File f = new File("C:\\_retemp\\hd" + i + ".bmp");
             ImageIO.write( img, "bmp", f );
         } catch (IOException e) { e.printStackTrace(); }
     }
 
     private static void sceneTestHarness(boolean lightDebug, boolean shapeDebug)
     {
-        int width   = 1000;
-        int height  = 1000;
+        int width   = 6000;
+        int height  = 6000;
 
         Light.DEBUG = lightDebug;
         Shape.DEBUG = shapeDebug;
@@ -42,33 +42,26 @@ public class Main
         Scene s             = new Scene();
         RasterOptions rp    = new RasterOptions(width,height);
         ViewPort vp         = new ViewPort();
-        Display d           = new Display(rp);
+        //Display d           = new Display(rp);
 
         // add shapes
         // DEBUG SPHERE:
         s.addShape( new Sphere( new Vector3D( 0, 0, 26 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
 
-        //s.addShape( new Sphere( new Vector3D( 2, 0, 26 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
-
         // add a light
-        double l_str = 5.5;
-        Vector3D l = new Vector3D(-8,-10,18);
+        double l_str = 5;
+        Vector3D l = new Vector3D(3,-7,18);
         s.addLight( new PointLight( l, l_str ) );
         //s.addLight( new Light() );
 
         int i = 0;
-        while(l.getX() < 8)
+        while(i<1)
         {
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
-
-            l = l.add(new Vector3D(0.25, 0, 0));
-            s.lights.remove(0);
-            s.addLight( new PointLight( l, l_str ) );
             // camera = camera.add(new Vector3D(0,0,0.0025));
 
-            writeFile(img, i);
-
-            d.setFrame(img);
+            writeFile(img, 0);
+            //d.setFrame(img);
             i++;
         }
 
