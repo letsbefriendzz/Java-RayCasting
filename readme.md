@@ -68,7 +68,6 @@ function. This means that, while my discriminant function works, something else 
         Vector3D c = this.c;
         double R = this.r;
 
-        // render distance issue likely exists within this or rayIntersect
         return (Math.pow( d.dot(e.sub(c)), 2 ) - ( d.dot(d) * ( e.sub(c).dot( e.sub(c) ) ) - Math.pow(R, 2) ) );
     }
 ```
@@ -86,10 +85,7 @@ function. This means that, while my discriminant function works, something else 
             Vector3D c = this.c;
 
             // this math may prove to be wrong later!
-            //new Vector3D(0,0,0).sub(d).dot(e.sub(c))
-            
-            // i think we take the - first, then the +
-            
+                     
             double t1 = ( ( 0.0 - d.dot(e.sub(c)) ) - dscrm ) / d.dot(d);
             double t2 = -1.0;
 
