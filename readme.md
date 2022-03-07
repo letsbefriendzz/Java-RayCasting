@@ -38,6 +38,8 @@ we render a colour to the pixel.
 
 ### Present Issues
 
+#### The Mystery of the Surface Coordinates
+
 Somewhere, somehow, I don't know how or why, but when I calculate the sphere surface coordiantes where
 a ray intersects a sphere, I'm getting a bad value. I do not know if this is my fault or something with
 Java, because I've triple checked my code at this point.
@@ -97,3 +99,25 @@ function. This means that, while my discriminant function works, something else 
         return null;
     }
 ```
+
+Above: the two functions that detect collisions correctly but don't return the correct value.
+
+#### Mystery of the Surface Coordinates -- Solved
+
+If you've got a keen eye, you'll notice I wasn't taking the square root of the determinant in my above
+functions. Rookie mistake, second only to starting a land war in Asia. By fixing this small but critical
+oversight, I now have the resultant sphere:
+
+<img src="readme_docs/light_succ.bmp" alt="Better lit sphere render" width="450" height="450">
+
+This is, however, not my only oversight.
+
+#### The Mystery of Moving Lights
+
+Funky lighting things happen when I move the camera around, which brings me to my second issue; the returned
+coordinates are relative to the camera location. This means that I'm not getting the absolute coordinates of
+the sphere in 3D space, I'm actually getting the offset from the camera - which makes sense given the method
+I'm employing to move the camera around for dynamic scenes. This does, however, mean I need to either calculate
+the correct values in the first place or fix them after the fact. The offset from the camera to an object may
+prove to be useful later, for something like a render distance. But for now, I'd like my objects to be shaded
+consistently as I move my camera around
