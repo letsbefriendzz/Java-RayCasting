@@ -70,11 +70,16 @@ public class Sphere extends Shape
             Vector3D e = ray.getOrigin();
             Vector3D c = this.c;
 
+            double A = (0.0 - d.dot( e.sub(c) ));
+            double B = Math.sqrt(dscrm);
+            double C = d.dot(d);
+
             // this math may prove to be wrong later!
 
             //new Vector3D(0,0,0).sub(d).dot(e.sub(c))
             // i think we take the - first, then the +
-            double t1 = ( ( 0.0 - d.dot(e.sub(c)) ) - dscrm ) / d.dot(d);
+            //double t1 = ( ( 0.0 - d.dot(e.sub(c)) ) - Math.sqrt( dscrm ) ) / d.dot(d);
+            double t1 = (A-B)/C;
 
             // runs console output if debug mode is set to on
             if(Shape.DEBUG)
@@ -107,7 +112,7 @@ public class Sphere extends Shape
 
             if (dscrm > 0)
             {
-                t2 = ( 0.0 - d.dot(e.sub(c)) + dscrm ) / d.dot(d);
+                t2 = (A+B)/C;
                 return new HitDetection( this, t1, t2, ray.eval(t1), ray.eval(t2) );
             }
             else

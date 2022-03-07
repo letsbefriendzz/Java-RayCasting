@@ -22,8 +22,8 @@ public class Main
 {
     private static void sceneTestHarness(boolean lightDebug, boolean shapeDebug)
     {
-        int width   = 750;
-        int height  = 750;
+        int width   = 1000;
+        int height  = 1000;
 
         Light.DEBUG = lightDebug;
         Shape.DEBUG = shapeDebug;
@@ -36,11 +36,13 @@ public class Main
         Display d           = new Display(rp);
 
         // add shapes
-        //s.addShape( new Sphere( new Vector3D( -6, 0, 12 ), 2, RasterOptions.Colors.Vaporwave.PINK ) );
+        // DEBUG SPHERE:
         s.addShape( new Sphere( new Vector3D( 0, 0, 26 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
 
+        //s.addShape( new Sphere( new Vector3D( 2, 0, 26 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
+
         // add a light
-        double l_str = 6;
+        double l_str = 5.5;
         Vector3D l = new Vector3D(4,-10,18);
         s.addLight( new PointLight( l, l_str ) );
         //s.addLight( new Light() );
@@ -49,16 +51,14 @@ public class Main
         while(i < 1)
         {
             // uncomment for file writing if needed /shrug
-            File f = new File("C:\\_test_files\\light_fail" + i + ".bmp");
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
             camera = camera.add(new Vector3D(0,0,0.0025));
+
             try
             {
+                File f = new File("C:\\_test_files\\light_fail" + i + ".bmp");
                 ImageIO.write( img, "bmp", f );
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            } catch (IOException e) { e.printStackTrace(); }
 
             d.setFrame(img);
             i++;
