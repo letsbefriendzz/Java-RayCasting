@@ -4,6 +4,8 @@ import com.ryan.components.Vector3D;
 import com.ryan.environment.resources.HitDetection;
 import com.ryan.render_engine.RasterOptions;
 
+// pseudoabstract class "Light"
+// is the parent of all other light classes.
 public class Light
 {
     public static boolean DEBUG = false;

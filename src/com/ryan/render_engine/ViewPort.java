@@ -29,9 +29,10 @@ public class ViewPort
     {
         // eye is default (0,0,0)
         this.eye = new Vector3D();
+        /*
         for(int i = 0; i < this.vertices.length; i++)
         {
-            // absolutely fucking disgusting implementation, but I'm too tired to come up with a better way
+            // absolutely disgusting implementation, but I'm too tired to come up with a better way
             if (i==0)
                 vertices[i] = new Vector3D(-1,1,zOffset);
             else if (i==1)
@@ -41,6 +42,7 @@ public class ViewPort
             else if (i==3)
                 vertices[i] = new Vector3D(1,1,zOffset);
         }
+        */
     }
 
     /*
@@ -51,11 +53,12 @@ public class ViewPort
     {
         ArrayList<ArrayList<Ray>> rays = new ArrayList<>();
 
+        double w = r.width;
+        double h = r.height;
+        double asp = w/h;
+
         for (int y = 0; y < r.height; y++)
         {
-            double w = r.width;
-            double h = r.height;
-            double asp = w/h;
             rays.add(new ArrayList<>());
 
             for(int x = 0; x < r.width; x++)

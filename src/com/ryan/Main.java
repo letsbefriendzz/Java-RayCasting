@@ -1,5 +1,6 @@
 package com.ryan;
 
+import com.ryan.components.Ray;
 import com.ryan.display.Display;
 import com.ryan.environment.resources.lights.Light;
 import com.ryan.environment.resources.lights.PointLight;
@@ -19,12 +20,13 @@ import java.io.IOException;
 
 public class Main
 {
-    public static void main(String[] args)
+    private static void sceneTestHarness(boolean lightDebug, boolean shapeDebug)
     {
-        int width   = 600;
-        int height  = 400;
+        int width   = 750;
+        int height  = 750;
 
-        Light.DEBUG = true;
+        Light.DEBUG = lightDebug;
+        Shape.DEBUG = shapeDebug;
 
         Vector3D camera     = new Vector3D(0,0,0);
 
@@ -33,32 +35,48 @@ public class Main
         ViewPort vp         = new ViewPort();
         Display d           = new Display(rp);
 
-        // add a light
-        Vector3D l = new Vector3D(0,1,12);
-        s.addLight( new PointLight( l, 6 ) );
-        s.addShape( new Sphere( l, 0.2, Shape.NULL ) );
-
         // add shapes
-        s.addShape( new Sphere( new Vector3D( 0, 0, 12 ), 2, RasterOptions.Colors.Vaporwave.YELLOW ) );
+        //s.addShape( new Sphere( new Vector3D( -6, 0, 12 ), 2, RasterOptions.Colors.Vaporwave.PINK ) );
+        s.addShape( new Sphere( new Vector3D( 0, 0, 26 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
+
+        // add a light
+        double l_str = 6;
+        Vector3D l = new Vector3D(4,-10,18);
+        s.addLight( new PointLight( l, l_str ) );
+        //s.addLight( new Light() );
 
         int i = 0;
         while(i < 1)
         {
             // uncomment for file writing if needed /shrug
-            // File f = new File("C:\\_test_files\\test" + i + ".bmp");
+            File f = new File("C:\\_test_files\\light_fail" + i + ".bmp");
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
             camera = camera.add(new Vector3D(0,0,0.0025));
+            try
+            {
+                ImageIO.write( img, "bmp", f );
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
             d.setFrame(img);
             i++;
         }
 
         //d.close();
     }
+
+    public static void main(String[] args)
+    {
+        sceneTestHarness(false, false);
+
+        // sceneTestHarness( true, false );
+    }
 }
 
 /*
 rng
-
             if(i % 1 == 0)
             {
                 Random r = new Random();

@@ -20,6 +20,27 @@ public class PointLight extends Light
     public int shade(HitDetection hd)
     {
         double distance = this.getSource().getDistance( hd.hit1 );
+        double maxLighting = this.strength * 2.5;
+
+        hd.hit1.consoleDisplay();
+        System.out.println();
+        //System.out.println( distance );
+
+        if(distance > maxLighting)
+            return RasterOptions.Colors.GRAY;
+        else if (distance <= strength)
+            return hd.shape.getRgb();
+        else
+        {
+            if(Light.DEBUG)
+            {
+                System.out.println( distance );
+                System.out.println( ( 1 - ( distance - this.strength ) / ( maxLighting - this.strength ) ) );
+            }
+            return RasterOptions.avgRgb( hd.shape.getRgb(), RasterOptions.Colors.GRAY,  1 - ( distance - this.strength ) / ( maxLighting - this.strength ) );
+        }
+
+        /*
         // construct a new ray with the light source as the origin and the coordinates
         // that we found an object
         Ray ray = new Ray( this.getSource(), hd.hit1 );
@@ -65,5 +86,6 @@ public class PointLight extends Light
         }
 
         return hd.shape.getRgb();
+        */
     }
 }

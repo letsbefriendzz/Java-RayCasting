@@ -31,13 +31,13 @@ public class RasterOptions
     public int width;
     public int height;
 
-    // do not modify this shit
+    // do not modify this
     public final int renderScale = 1;
     // you can and will kill the rendering process !
 
     public static int getRandomColour()
     {
-        // lol this design is shit
+        // lol this design is awful
         // don't keep this
         int[] colors = { RED, YELLOW, GREEN, BLUE, ORANGE, WHITE, Colors.Vaporwave.BLUE, Colors.Vaporwave.PINK,
                         Colors.Vaporwave.GREEN, Colors.Vaporwave.PURPLE, Colors.Vaporwave.YELLOW };
@@ -45,8 +45,12 @@ public class RasterOptions
         return colors[ new Random().nextInt(colors.length) ];
     }
 
-    public static int avgRgb(int rgb_a, int rgb_b)
+    // avgs rgb values
+    // bitwise rgb integers is pretty nifty
+    public static int avgRgb(int rgb_a, int rgb_b, double ratio)
     {
+        double iRatio = 1.0f - ratio;
+
         int b1 = (rgb_a)&0xFF;
         int g1 = (rgb_a>>8)&0xFF;
         int r1 = (rgb_a>>16)&0xFF;
@@ -55,11 +59,11 @@ public class RasterOptions
         int g2 = (rgb_b>>8)&0xFF;
         int r2 = (rgb_b>>16)&0xFF;
 
-        int b3 = (b1+b2)/2;
-        int g3 = (g1+g2)/2;
-        int r3 = (r1+r2)/2;
+        int R = ((int)(r2 * iRatio) + (int)(r1 * ratio));
+        int G = ((int)(g2 * iRatio) + (int)(g1 * ratio));
+        int B = ((int)(b2 * iRatio) + (int)(b1 * ratio));
 
-        return (r3<<16)|(g3<<8)|(b3);
+        return (R<<16)|(G<<8)|(B);
     }
 
     // init to default 400x800
