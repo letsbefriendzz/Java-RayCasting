@@ -32,11 +32,6 @@ ray caster, we draw a ray for each of these coordinates, originating from the ca
 through each of these coordinates. The distance that the ViewPort is situated from the eye determines
 the final render's field of view.
 
-We construct the ViewPort as a 2x2 grid, centred aroud the camera and exactly one unit offset from
-the camera. We then translate our raster image size to coordinates within this 2x2 square, and stretch
-the coordinates by the aspect ratio if we are not rendering a square image. Thus we end up with an
-`ArrayList` of `ArrayList`s of `Ray` objects.
-
 These rays, along with our scene, are passed to the renderer, where we evaluate each ray and determine
 if it hits any objects within our scene. Based on the present lighting and which object is hit first,
 we render a colour to the pixel.
@@ -53,7 +48,7 @@ be returned by our ray casting is (0+-2, 0+-2, 12+-2). However, when rendering a
 get results consistently within this range. I first discovered this when attempting to create my own
 shading algorithm, where I was getting results that looked like this:
 
-<img src="readme_docs/light_fail0.bmp" alt="Badly lit sphere render" width="500" height="600"> 
+<img src="readme_docs/light_fail0.bmp" alt="Badly lit sphere render" width="450" height="450"> 
 
 The dimly lit visible centre of the sphere is due to incorrect vectors returned by my rayIntersection
 function. This means that, while my discriminant function works, something else isn't.
