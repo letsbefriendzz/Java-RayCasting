@@ -36,7 +36,7 @@ These rays, along with our scene, are passed to the renderer, where we evaluate 
 if it hits any objects within our scene. Based on the present lighting and which object is hit first,
 we render a colour to the pixel.
 
-### Present Issues
+### Solved Issues
 
 #### The Mystery of the Surface Coordinates
 
