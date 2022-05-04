@@ -46,7 +46,7 @@ public class Main
 
         // add shapes
         // DEBUG SPHERE:
-        s.addShape( new Sphere( new Vector3D( 0, 0, 8 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
+        s.addShape( new Sphere( new Vector3D( 0, 0, 14 ), 5, RasterOptions.Colors.Vaporwave.GREEN ) );
 
         // add a light
         double l_str = 4.6;
@@ -60,7 +60,7 @@ public class Main
             BufferedImage img = Renderer.renderScene(s, vp.generateRays(rp, camera) , rp);
             // camera = camera.add(new Vector3D(0,0,0.0025));
 
-            writeFile(img, 0);
+            // writeFile(img, 0);
             d.setFrame(img);
             i++;
         }

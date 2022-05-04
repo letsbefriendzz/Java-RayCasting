@@ -37,10 +37,6 @@ public class PointLight extends Light
         double distance = this.getSource().getDistance( hd.hit1 );
         double maxLighting = this.strength * 2.5;
 
-/*        hd.hit1.consoleDisplay();
-        System.out.println();*/
-        //System.out.println( distance );
-
         if(distance > maxLighting)
             return RasterOptions.Colors.GRAY;
         else if (distance <= strength)
