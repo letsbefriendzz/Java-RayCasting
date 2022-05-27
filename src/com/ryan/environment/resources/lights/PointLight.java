@@ -8,6 +8,7 @@ import com.ryan.render_engine.RasterOptions;
 
 public class PointLight extends Light
 {
+    // has an origin point -- strength dictates how far light rays extend in any direction
     private double strength;
 
     public PointLight(Vector3D s, double str)
@@ -35,20 +36,31 @@ public class PointLight extends Light
     public int shade(HitDetection hd)
     {
         double distance = this.getSource().getDistance( hd.hit1 );
-        double maxLighting = this.strength * 2.5;
+        double maxLightingDistance = this.strength * 2.5;
+        double shineDistance = this.strength * 0.3;
 
-        if(distance > maxLighting)
+        if(distance > maxLightingDistance)
             return RasterOptions.Colors.GRAY;
         else if (distance <= strength)
-            return hd.shape.getRgb();
+        {
+            return RasterOptions.avgRgb( hd.shape.getRgb(),
+                    RasterOptions.Colors.WHITE,
+                    1 - ( distance - this.strength ) / ( shineDistance - this.strength )
+            );
+            // return hd.shape.getRgb();
+        }
         else
         {
             if(Light.DEBUG)
             {
                 System.out.println( distance );
-                System.out.println( ( 1 - ( distance - this.strength ) / ( maxLighting - this.strength ) ) );
+                System.out.println( ( 1 - ( distance - this.strength ) / ( maxLightingDistance - this.strength ) ) );
             }
-            return RasterOptions.avgRgb( hd.shape.getRgb(), RasterOptions.Colors.GRAY,  1 - ( distance - this.strength ) / ( maxLighting - this.strength ) );
+
+            return RasterOptions.avgRgb( hd.shape.getRgb(),
+                    RasterOptions.Colors.GRAY,
+                    1 - ( distance - this.strength ) / ( maxLightingDistance - this.strength )
+            );
         }
 
         /*

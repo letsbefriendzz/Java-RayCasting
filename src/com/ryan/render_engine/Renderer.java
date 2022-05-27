@@ -18,7 +18,7 @@ public class Renderer
 
     public static BufferedImage renderScene(Scene scene, ArrayList<ArrayList<Ray>> rays, RasterOptions raster)
     {
-        /*input validation*/
+        /* input validation */
         if(rays.size() != raster.height || rays.get(0).size() != raster.width)
         {
             System.out.println("Invalid Ray list : RasterOptions combo");
@@ -30,16 +30,21 @@ public class Renderer
 
         BufferedImage img = new BufferedImage(raster.width, raster.height, BufferedImage.TYPE_INT_RGB);
 
+        // iterate over xy coordinates of image
         for(int y = 0; y < height; y++)
         {
             for(int x = 0; x < width; x++)
             {
+                // create HitDetection for closest detected object
                 HitDetection closestObject = null;
+                // iterate over the scene shapes
                 for (int i = 0; i < scene.shapes.size(); i++)
                 {
+                    // attempt to create a HitDetection for that object -- if it returns null, do nothing
                     HitDetection hd = scene.shapes.get(i).rayIntersect( rays.get(y).get(x), raster.renderScale);
                     if ( hd != null )
                     {
+                        // what the fuck is this shit
                         if(closestObject == null)
                             closestObject = hd;
                         else if (closestObject.t1 > hd.t1)
@@ -47,7 +52,9 @@ public class Renderer
                     }
                 }
 
+                // set default colour (that is, skybox) to black
                 int colour = RasterOptions.Colors.BLACK;
+                // if there is a ray-object intersection, shade that bitch
                 if(closestObject != null)
                 {
                     // <test>

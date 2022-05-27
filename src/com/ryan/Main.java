@@ -32,8 +32,7 @@ public class Main
     private static void sceneTestHarness(boolean lightDebug, boolean shapeDebug)
     {
         int width   = 1000;
-        int height  = 1000;
-
+        int height  = 750;
         Light.DEBUG = lightDebug;
         Shape.DEBUG = shapeDebug;
 
@@ -73,19 +72,3 @@ public class Main
         sceneTestHarness(false, false);
     }
 }
-
-/*
-rng
-            if(i % 1 == 0)
-            {
-                Random r = new Random();
-                double x = -8 + (8 - (-8)) * r.nextDouble();
-                double y = -8 + (8 - (-8)) * r.nextDouble();
-                double z = 8 + (64 - (0 - ( 8 ))) * r.nextDouble();
-                double rad = 0.1 + (3 - (-0.1)) * r.nextDouble();
-                s.addShape( new Sphere( new Vector3D(x,y,z), rad, RasterOptions.getRandomColour() ) );
-                s.shapes.remove(0);
-                //System.out.println(i);
-            }
- */
-

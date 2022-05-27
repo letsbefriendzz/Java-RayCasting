@@ -29,20 +29,6 @@ public class ViewPort
     {
         // eye is default (0,0,0)
         this.eye = new Vector3D();
-        /*
-        this isn't even used lol
-        for(int i = 0; i < this.vertices.length; i++)
-        {
-            if (i==0)
-                vertices[i] = new Vector3D(-1,1,zOffset);
-            else if (i==1)
-                vertices[1] = new Vector3D(-1,-1,zOffset);
-            else if (i==2)
-                vertices[i] = new Vector3D(1,-1,zOffset);
-            else if (i==3)
-                vertices[i] = new Vector3D(1,1,zOffset);
-        }
-        */
     }
 
     /*
